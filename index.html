@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipCycle - اللوجستيات العكسية المستدامة</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-recycle"></i>
+                <span>FlipCycle</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-nav="home">الرئيسية</a></li>
+                <li><a href="#services" class="nav-link" data-nav="services">خدماتنا</a></li>
+                <li><a href="#store" class="nav-link" data-nav="store">المتجر</a></li>
+                <li><a href="#tracking" class="nav-link" data-nav="tracking">تتبع الشحنات</a></li>
+                <li><a href="#impact" class="nav-link" data-nav="impact">التأثير البيئي</a></li>
+                <li><a href="#education" class="nav-link" data-nav="education">التعليم</a></li>
+                <li><a href="#contact" class="nav-link" data-nav="contact">اتصل بنا</a></li>
+            </ul>
+            <div class="nav-auth">
+                <button class="btn-login" data-nav="login" onclick="showLoginModal()">تسجيل الدخول</button>
+                <button class="btn-register" data-nav="register" onclick="showRegisterModal()">إنشاء حساب</button>
+                <button class="lang-toggle" onclick="toggleLanguage()">EN</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title animated-text" data-hero="title">مستقبل اللوجستيات العكسية</h1>
+                <p class="hero-subtitle" data-hero="subtitle">نحول المرتجعات إلى فرص مستدامة من خلال إعادة البيع وإعادة التدوير الذكي</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="50000">0</span>
+                        <span class="stat-label">منتج تم إعادة تدويره</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1200">0</span>
+                        <span class="stat-label">طن من انبعاثات الكربون تم توفيرها</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="95">0</span>
+                        <span class="stat-label">% معدل رضا العملاء</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn-primary" data-hero="discover" onclick="scrollToSection('services')">اكتشف خدماتنا</button>
+                    <button class="btn-secondary" data-hero="demo" onclick="showDemo()">شاهد العرض التوضيحي</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-item" data-speed="2"><i class="fas fa-recycle"></i></div>
+                    <div class="floating-item" data-speed="3"><i class="fas fa-leaf"></i></div>
+                    <div class="floating-item" data-speed="1.5"><i class="fas fa-box"></i></div>
+                    <div class="floating-item" data-speed="2.5"><i class="fas fa-truck"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">خدماتنا المتكاملة</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>إدارة المرتجعات</h3>
+                    <p>نظام متطور لإدارة المرتجعات بكفاءة عالية وشفافية كاملة</p>
+                    <button class="btn-service" onclick="openService('returns')">تعرف أكثر</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>إعادة البيع</h3>
+                    <p>منصة متخصصة لبيع المنتجات المعاد تأهيلها بأسعار مناسبة</p>
+                    <button class="btn-service" onclick="openService('resale')">تعرف أكثر</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h3>إعادة التدوير</h3>
+                    <p>شبكة واسعة من شركاء إعادة التدوير لضمان الاستدامة البيئية</p>
+                    <button class="btn-service" onclick="openService('recycling')">تعرف أكثر</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tracking Section -->
+    <section id="tracking" class="tracking">
+        <div class="container">
+            <h2 class="section-title">تتبع الشحنات</h2>
+            <div class="tracking-container">
+                <div class="tracking-input">
+                    <input type="text" id="trackingNumber" placeholder="أدخل رقم التتبع">
+                    <button onclick="trackShipment()">تتبع</button>
+                </div>
+                <div class="tracking-result" id="trackingResult">
+                    <!-- Tracking results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section id="store" class="store">
+        <div class="container">
+            <h2 class="section-title">متجر المنتجات المعاد بيعها</h2>
+            <div class="store-filters">
+                <button class="filter-btn active" data-category="all">جميع المنتجات</button>
+                <button class="filter-btn" data-category="electronics">إلكترونيات</button>
+                <button class="filter-btn" data-category="clothing">ملابس</button>
+                <button class="filter-btn" data-category="home">منزل وحديقة</button>
+                <button class="filter-btn" data-category="books">كتب</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="map-section">
+        <div class="container">
+            <h2 class="section-title">مراكز الخدمة</h2>
+            <div class="map-container">
+                <div id="interactiveMap" class="interactive-map">
+                    <!-- Interactive map will be rendered here -->
+                </div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="legend-color pickup"></span>
+                        <span>مراكز الاستلام</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color recycling"></span>
+                        <span>مراكز إعادة التدوير</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color coverage"></span>
+                        <span>مناطق التغطية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Calculator -->
+    <section id="impact" class="impact">
+        <div class="container">
+            <h2 class="section-title">حاسبة التأثير البيئي</h2>
+            <div class="impact-calculator">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label>عدد المنتجات المرتجعة</label>
+                        <input type="number" id="returnedItems" placeholder="0">
+                    </div>
+                    <div class="input-group">
+                        <label>نوع المنتج</label>
+                        <select id="productType">
+                            <option value="electronics">إلكترونيات</option>
+                            <option value="clothing">ملابس</option>
+                            <option value="furniture">أثاث</option>
+                            <option value="books">كتب</option>
+                        </select>
+                    </div>
+                    <button onclick="calculateImpact()">احسب التأثير</button>
+                </div>
+                <div class="impact-results" id="impactResults">
+                    <div class="impact-metric">
+                        <i class="fas fa-leaf"></i>
+                        <span class="metric-value" id="carbonSaved">0</span>
+                        <span class="metric-unit">كجم CO2 تم توفيرها</span>
+                    </div>
+                    <div class="impact-metric">
+                        <i class="fas fa-trash-alt"></i>
+                        <span class="metric-value" id="wasteAvoided">0</span>
+                        <span class="metric-unit">كجم نفايات تم تجنبها</span>
+                    </div>
+                    <div class="impact-metric">
+                        <i class="fas fa-water"></i>
+                        <span class="metric-value" id="waterSaved">0</span>
+                        <span class="metric-unit">لتر ماء تم توفيرها</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="education">
+        <div class="container">
+            <h2 class="section-title">التعليم والتوعية</h2>
+            <div class="education-tabs">
+                <button class="tab-btn active" data-tab="articles">المقالات</button>
+                <button class="tab-btn" data-tab="videos">الفيديوهات</button>
+                <button class="tab-btn" data-tab="guides">الإرشادات</button>
+            </div>
+            <div class="education-content">
+                <div class="tab-content active" id="articles">
+                    <div class="articles-grid">
+                        <!-- Articles will be loaded dynamically -->
+                    </div>
+                </div>
+                <div class="tab-content" id="videos">
+                    <div class="videos-grid">
+                        <!-- Videos will be loaded dynamically -->
+                    </div>
+                </div>
+                <div class="tab-content" id="guides">
+                    <div class="guides-grid">
+                        <!-- Guides will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="membership">
+        <div class="container">
+            <h2 class="section-title">برنامج العضوية والمكافآت</h2>
+            <div class="membership-tiers">
+                <div class="tier-card">
+                    <div class="tier-header bronze">
+                        <i class="fas fa-medal"></i>
+                        <h3>البرونزية</h3>
+                    </div>
+                    <div class="tier-benefits">
+                        <ul>
+                            <li>5% خصم على المشتريات</li>
+                            <li>نقاط مكافآت أساسية</li>
+                            <li>دعم عملاء عادي</li>
+                        </ul>
+                    </div>
+                    <button class="btn-tier">ابدأ الآن</button>
+                </div>
+                <div class="tier-card featured">
+                    <div class="tier-header silver">
+                        <i class="fas fa-medal"></i>
+                        <h3>الفضية</h3>
+                    </div>
+                    <div class="tier-benefits">
+                        <ul>
+                            <li>10% خصم على المشتريات</li>
+                            <li>نقاط مكافآت مضاعفة</li>
+                            <li>شحن مجاني</li>
+                            <li>دعم عملاء متقدم</li>
+                        </ul>
+                    </div>
+                    <button class="btn-tier">ترقية الآن</button>
+                </div>
+                <div class="tier-card">
+                    <div class="tier-header gold">
+                        <i class="fas fa-crown"></i>
+                        <h3>الذهبية</h3>
+                    </div>
+                    <div class="tier-benefits">
+                        <ul>
+                            <li>15% خصم على المشتريات</li>
+                            <li>نقاط مكافآت ثلاثية</li>
+                            <li>شحن مجاني سريع</li>
+                            <li>دعم عملاء VIP</li>
+                            <li>وصول مبكر للمنتجات</li>
+                        </ul>
+                    </div>
+                    <button class="btn-tier">ترقية الآن</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Dashboard -->
+    <section id="analytics" class="analytics">
+        <div class="container">
+            <h2 class="section-title">لوحة التحليلات</h2>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>إحصائيات المرتجعات</h3>
+                    <canvas id="returnsChart"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h3>اتجاهات السوق</h3>
+                    <canvas id="trendsChart"></canvas>
+                </div>
+                <div class="analytics-card">
+                    <h3>التحليلات التنبؤية</h3>
+                    <canvas id="predictiveChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-recycle"></i>
+                        <span>FlipCycle</span>
+                    </div>
+                    <p>نحو مستقبل أكثر استدامة من خلال اللوجستيات العكسية الذكية</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>الخدمات</h4>
+                    <ul>
+                        <li><a href="#">إدارة المرتجعات</a></li>
+                        <li><a href="#">إعادة البيع</a></li>
+                        <li><a href="#">إعادة التدوير</a></li>
+                        <li><a href="#">الاستشارات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>الدعم</h4>
+                    <ul>
+                        <li><a href="#">مركز المساعدة</a></li>
+                        <li><a href="#">اتصل بنا</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> +966 11 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> info@flipcycle.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FlipCycle. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الحساب</label>
+                    <select id="accountType">
+                        <option value="individual">عميل فردي</option>
+                        <option value="business">شركة</option>
+                        <option value="recycling">شريك إعادة تدوير</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">دخول</button>
+                <p>ليس لديك حساب؟ <a href="#" onclick="switchToRegister()">إنشاء حساب جديد</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>إنشاء حساب جديد</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>تأكيد كلمة المرور</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>نوع الحساب</label>
+                    <select id="registerAccountType">
+                        <option value="individual">عميل فردي</option>
+                        <option value="business">شركة</option>
+                        <option value="recycling">شريك إعادة تدوير</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary">إنشاء حساب</button>
+                <p>لديك حساب بالفعل؟ <a href="#" onclick="switchToLogin()">تسجيل الدخول</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden by default) -->
+    <div id="dashboard" class="dashboard hidden">
+        <div class="dashboard-sidebar">
+            <div class="dashboard-logo">
+                <i class="fas fa-recycle"></i>
+                <span>FlipCycle</span>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <i class="fas fa-chart-line"></i>
+                    <span>نظرة عامة</span>
+                </a>
+                <a href="#" class="nav-item" data-section="returns">
+                    <i class="fas fa-undo"></i>
+                    <span>المرتجعات</span>
+                </a>
+                <a href="#" class="nav-item" data-section="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>الطلبات</span>
+                </a>
+                <a href="#" class="nav-item" data-section="rewards">
+                    <i class="fas fa-gift"></i>
+                    <span>المكافآت</span>
+                </a>
+                <a href="#" class="nav-item" data-section="profile">
+                    <i class="fas fa-user"></i>
+                    <span>الملف الشخصي</span>
+                </a>
+            </nav>
+            <button class="btn-logout" onclick="logout()">تسجيل الخروج</button>
+        </div>
+        <div class="dashboard-content">
+            <div class="dashboard-header">
+                <h1 id="dashboardTitle">نظرة عامة</h1>
+                <div class="user-info">
+                    <span id="userName">مرحباً، أحمد</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-main" id="dashboardMain">
+                <!-- Dashboard content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
